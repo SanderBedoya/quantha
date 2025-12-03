@@ -13,119 +13,132 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      background-color: #f3f4f6;
-      color: #1f2937;
+      background-color: #f9fafb;
+      color: #111827;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 2rem;
+      padding: 1.5rem;
       text-align: center;
+      line-height: 1.5;
     }
 
     .container {
-      max-width: 600px;
+      max-width: 640px;
       margin: 0 auto;
     }
 
     .logo {
-      margin-bottom: 1.5rem;
+      margin: 1.25rem 0 1.5rem;
     }
 
     .logo svg {
-      width: 80px;
-      height: 80px;
+      width: 96px;
+      height: 96px;
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 1.875rem; /* 30px */
       font-weight: 700;
-      margin-bottom: 0.75rem;
-      color: #111827;
+      color: #1f2937;
+      margin-bottom: 1rem;
     }
 
     p {
-      font-size: 1.125rem;
-      line-height: 1.6;
-      color: #4b5563;
-      margin-bottom: 1.5rem;
+      font-size: 1.125rem; /* 18px */
+      color: #374151;
+      margin-bottom: 1rem;
     }
 
-    .checking {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
+    .details {
+      background-color: #f3f4f6;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin: 1.25rem 0;
+      font-size: 0.9375rem; /* 15px */
+      text-align: left;
+      color: #4b5563;
+    }
+
+    .support {
+      margin-top: 1.5rem;
+      font-size: 1rem;
       color: #6b7280;
     }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      background-color: #9ca3af;
-      border-radius: 50%;
-      animation: pulse 1.5s infinite ease-in-out;
+    .support a {
+      color: #1d4ed8;
+      text-decoration: none;
+      font-weight: 600;
     }
 
-    .dot:nth-child(2) { animation-delay: 0.2s; }
-    .dot:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.4; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.2); }
+    .support a:hover {
+      text-decoration: underline;
     }
 
     .footer {
-      font-size: 0.875rem;
-      color: #9ca3af;
       margin-top: 2rem;
+      font-size: 0.8125rem; /* 13px */
+      color: #9ca3af;
     }
 
     @media (max-width: 480px) {
-      .logo svg { width: 60px; height: 60px; }
-      h1 { font-size: 1.75rem; }
+      .logo svg { width: 80px; height: 80px; }
+      h1 { font-size: 1.5rem; }
       p { font-size: 1rem; }
+      .details { padding: 0.75rem; font-size: 0.875rem; }
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- SVG: Servidor con fallo (más claro y explícito que la nube) -->
     <div class="logo">
-      <!-- SVG inspirado en Cloudflare: nube + rayo -->
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <!-- Nube -->
-        <path d="M20,45 C10,45 5,55 10,65 C20,75 40,75 50,70 C60,75 80,75 90,65 C95,55 90,45 80,45 C80,30 60,25 50,30 C40,25 20,30 20,45 Z"
-              fill="#1da1f2" opacity="0.9" />
-        <!-- Rayo -->
-        <path d="M45,40 L55,40 L50,60 L60,50 L50,70 L40,50 L50,60 Z"
-              fill="#fff" />
+        <!-- Base del servidor -->
+        <rect x="20" y="30" width="60" height="40" rx="4" fill="#e5e7eb" stroke="#9ca3af" stroke-width="2"/>
+        <!-- Bandas horizontales (disco/rack) -->
+        <rect x="25" y="37" width="50" height="4" fill="#d1d5db"/>
+        <rect x="25" y="47" width="50" height="4" fill="#d1d5db"/>
+        <rect x="25" y="57" width="50" height="4" fill="#d1d5db"/>
+        <!-- Pantalla/LED apagado -->
+        <rect x="72" y="37" width="6" height="6" rx="1" fill="#9ca3af"/>
+        <!-- Línea de fallo diagonal (como un rayo/corte) -->
+        <line x1="15" y1="85" x2="85" y2="15" stroke="#ef4444" stroke-width="4" stroke-linecap="round"/>
+        <!-- Círculo rojo con barra (símbolo universal de "no disponible") -->
+        <circle cx="50" cy="50" r="32" fill="none" stroke="#ef4444" stroke-width="3"/>
+        <line x1="30" y1="50" x2="70" y2="50" stroke="#ef4444" stroke-width="4" stroke-linecap="round"/>
       </svg>
     </div>
 
-    <h1>Servicio no disponible</h1>
-    <p>Estamos experimentando problemas técnicos. El servicio está temporalmente fuera de línea. Por favor, inténtalo de nuevo más tarde.</p>
+    <h1>El servicio no está disponible</h1>
 
-    <div class="checking">
-      <span>Reintentando conexión</span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
+    <p>No se puede establecer conexión con el servidor.</p>
+
+    <div class="details">
+      <strong>Error de resolución o conexión:</strong><br>
+      El nombre de dominio <code>mipagina.com</code> no puede ser resuelto por tu proveedor de internet (DNS),<br>
+      o el servidor está caído y no responde a las solicitudes.
     </div>
 
+    <p class="support">
+      Si el problema persiste por más de unos minutos,<br>
+      por favor comuníquese con soporte técnico en:<br>
+      <a href="mailto:mipagina@soporte.com">mipagina@soporte.com</a>
+    </p>
+
     <div class="footer">
-      <p>Este no es un error de tu conexión. El equipo técnico ya está trabajando en la solución.</p>
+      <p>Este error no depende de su dispositivo ni conexión local. Es un problema del lado del servidor.</p>
     </div>
   </div>
 
-  <!-- JS mínimo para SPA (aunque no es necesario aquí, lo dejamos por "SPA" semántico) -->
+  <!-- SPA: listener mínimo (sin navegación real, pero listo para extender) -->
   <script>
-    // SPA: evita recargas, maneja hashes internos (aunque no hay navegación real)
-    window.addEventListener('hashchange', () => {
-      // En una SPA real, aquí renderizarías vistas.
-      // Aquí no hay contenido dinámico, solo mantenemos la estructura.
+    // SPA boilerplate: evita comportamientos no deseados en futuras rutas
+    document.addEventListener('DOMContentLoaded', () => {
+      // Nada dinámico ahora, pero mantiene estructura SPA
     });
   </script>
 </body>
